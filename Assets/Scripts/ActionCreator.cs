@@ -9,9 +9,13 @@ public class ActionCreator : MonoBehaviour {
 
 	[SerializeField]
 	public GameObject FloorGO;
+	public List<GameObject> WallGOs;
 
 	[SerializeField]
 	public List<Material> floorMaterialList;
+
+	[SerializeField]
+	public List<Material> wallMaterialList;
 
 	public enum TEXTURE_TYPE {
 		TEXTURE_DEFAULT,
@@ -20,9 +24,11 @@ public class ActionCreator : MonoBehaviour {
 	};
 
 	[SerializeField]
-	public void ChangeTextureTo (int textureType) {
+	public void ChangeFloorTextureTo (int textureType) {
 
-		FloorGO.renderer.material = floorMaterialList [textureType];
+		
+		FloorGO.renderer.material = floorMaterialList [textureType];			
+
 //		switch (textureType) {
 //			case TEXTURE_TYPE.TEXTURE_WALL:
 //				FloorGO.renderer.material = floorMaterialList [(int) TEXTURE_TYPE.TEXTURE_WALL];
@@ -37,6 +43,15 @@ public class ActionCreator : MonoBehaviour {
 //				break;
 //		}
 
+
+	}
+
+	public void ChangeWallTextureTo (int textureType) {
+
+		WallGOs.ForEach (
+			(GameObject obj) => obj.renderer.material = wallMaterialList [textureType]
+		);			
+		
 
 	}
 	// Use this for initialization
